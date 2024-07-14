@@ -6,15 +6,101 @@
 #include "Steam_Friends.hpp"
 #include "Steam_User.hpp"
 #include "Steam_Client.hpp"
+#include "Steam_Matchmaking.hpp"
+
+
+
+S_API inline void __cdecl SteamInternal_Init_SteamNetworking(ISteamNetworking** p)
+{
+	*p = (ISteamNetworking*)(SteamInternal_FindOrCreateUserInterface(SteamAPI_GetHSteamUser(), "SteamNetworking006"));
+} 
+S_API inline ISteamNetworking* SteamNetworking()
+{
+	static void* s_CallbackCounterAndContext[3] = { (void*)&SteamInternal_Init_SteamNetworking, 0, 0 }; return *(ISteamNetworking**)SteamInternal_ContextInit(s_CallbackCounterAndContext);
+}
+
+
+
+S_API inline void __cdecl SteamInternal_Init_SteamFriends(ISteamFriends** p)
+{
+	*p = (ISteamFriends*)(SteamInternal_FindOrCreateUserInterface(SteamAPI_GetHSteamUser(), "SteamFriends017"));
+}  
+S_API inline ISteamFriends* SteamFriends()
+{
+	static void* s_CallbackCounterAndContext[3] = { (void*)&SteamInternal_Init_SteamFriends, 0, 0 }; return *(ISteamFriends**)SteamInternal_ContextInit(s_CallbackCounterAndContext);
+}
+S_API inline void __cdecl SteamInternal_Init_SteamRemoteStorage(ISteamRemoteStorage** p)
+{
+	*p = (ISteamRemoteStorage*)(SteamInternal_FindOrCreateUserInterface(SteamAPI_GetHSteamUser(), "STEAMREMOTESTORAGE_INTERFACE_VERSION016"));
+} 
+S_API inline ISteamRemoteStorage* SteamRemoteStorage()
+{
+	static void* s_CallbackCounterAndContext[3] = { (void*)&SteamInternal_Init_SteamRemoteStorage, 0, 0 }; return *(ISteamRemoteStorage**)SteamInternal_ContextInit(s_CallbackCounterAndContext);
+}
+
+
+
+S_API inline void __cdecl SteamInternal_Init_SteamApps(ISteamApps** p)
+{
+	*p = (ISteamApps*)(SteamInternal_FindOrCreateUserInterface(SteamAPI_GetHSteamUser(), "STEAMAPPS_INTERFACE_VERSION008"));
+}
+S_API inline ISteamApps* SteamApps()
+{
+	static void* s_CallbackCounterAndContext[3] = { (void*)&SteamInternal_Init_SteamApps, 0, 0 }; return *(ISteamApps**)SteamInternal_ContextInit(s_CallbackCounterAndContext);
+}
+S_API inline void __cdecl SteamInternal_Init_SteamUser(ISteamUser** p)
+{
+	*p = (ISteamUser*)(SteamInternal_FindOrCreateUserInterface(SteamAPI_GetHSteamUser(), "SteamUser023"));
+} 
+S_API inline ISteamUser* SteamUser()
+{
+	static void* s_CallbackCounterAndContext[3] = { (void*)&SteamInternal_Init_SteamUser, 0, 0 }; return *(ISteamUser**)SteamInternal_ContextInit(s_CallbackCounterAndContext);
+}
+S_API inline void __cdecl SteamInternal_Init_SteamUtils(ISteamUtils** p)
+{
+	*p = (ISteamUtils*)(SteamInternal_FindOrCreateUserInterface(0, "SteamUtils010"));
+} 
+S_API inline ISteamUtils* SteamUtils()
+{
+	static void* s_CallbackCounterAndContext[3] = { (void*)&SteamInternal_Init_SteamUtils, 0, 0 }; return *(ISteamUtils**)SteamInternal_ContextInit(s_CallbackCounterAndContext);
+}
 
 
 
 
+S_API inline void __cdecl SteamInternal_Init_SteamMatchmaking(ISteamMatchmaking** p)
+{
+	*p = (ISteamMatchmaking*)(SteamInternal_FindOrCreateUserInterface(SteamAPI_GetHSteamUser(), "SteamMatchMaking009"));
+}
+S_API inline ISteamMatchmaking* SteamMatchmaking()
+{
+	static void* s_CallbackCounterAndContext[3] = { (void*)&SteamInternal_Init_SteamMatchmaking, 0, 0 }; return *(ISteamMatchmaking**)SteamInternal_ContextInit(s_CallbackCounterAndContext);
+}
+S_API inline void __cdecl SteamInternal_Init_SteamUserStats(Steam_UserStats** p)
+{
+	*p = (Steam_UserStats*)(SteamInternal_FindOrCreateUserInterface(SteamAPI_GetHSteamUser(), "STEAMUSERSTATS_INTERFACE_VERSION012"));
+} 
+S_API inline Steam_UserStats* SteamUserStats()
+{
+	static void* s_CallbackCounterAndContext[3] = { (void*)&SteamInternal_Init_SteamUserStats, 0, 0 };
+
+	return *(Steam_UserStats**)SteamInternal_ContextInit(s_CallbackCounterAndContext);
+}
+//ISteamUserStats
+// 
+// 
+//SteamMatchMaking009
 //#define STEAMAPPS_INTERFACE_VERSION "STEAMAPPS_INTERFACE_VERSION008"
 //#define STEAMFRIENDS_INTERFACE_VERSION "SteamFriends017"
 //#define STEAMCLIENT_INTERFACE_VERSION		"SteamClient021"
 //#define STEAMUSER_INTERFACE_VERSION "SteamUser023"
 //#define STEAMUSERSTATS_INTERFACE_VERSION "STEAMUSERSTATS_INTERFACE_VERSION012"
+
+S_API void S_CALLTYPE SteamAPI_RegisterCallResult(class CCallbackBase* pCallback, SteamAPICall_t hAPICall) {}
+
+S_API void S_CALLTYPE SteamAPI_UnregisterCallResult(class CCallbackBase* pCallback, SteamAPICall_t hAPICall) {}
+
+
 void* Createinterface(const char* Version)
 {
 	if (strcmp(Version, "SteamFriends017") == 0)
@@ -37,10 +123,24 @@ void* Createinterface(const char* Version)
 	{
 		return new Steam_Client;
 	}
+	else if (strcmp(Version, "SteamMatchMaking009") == 0)
+	{
+		return new Steam_Matchmaking;
+	}
+	else if (strcmp(Version, "STEAMUSERSTATS_INTERFACE_VERSION012") == 0)
+	{
+		return new Steam_UserStats;
+	}
 	return nullptr;
 }
 
 
+
+
+S_API const char* SteamAPI_GetSteamInstallPath()
+{
+	return "C:\\Program\ Files\ (x86)\\Steam";
+}
 
 //SteamAPI_Getgsteamuser
 
@@ -132,6 +232,7 @@ S_API bool S_CALLTYPE SteamAPI_IsSteamRunning()
 
 
 
+
 S_API void* S_CALLTYPE SteamInternal_FindOrCreateUserInterface(HSteamUser hSteamUser, const char* pszVersion)
 {
 	if (!pszVersion)
@@ -141,6 +242,9 @@ S_API void* S_CALLTYPE SteamInternal_FindOrCreateUserInterface(HSteamUser hSteam
 	return Createinterface(pszVersion);
 	//return Client->GetISteamGenericInterface(hSteamUser, SteamAPI_GetHSteamPipe() , pszVersion);
 }
+
+
+
 
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD  ul_reason_for_call, LPVOID lpReserved)
 {

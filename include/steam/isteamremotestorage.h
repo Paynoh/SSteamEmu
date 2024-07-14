@@ -324,8 +324,8 @@ class ISteamRemoteStorage
 #define STEAMREMOTESTORAGE_INTERFACE_VERSION "STEAMREMOTESTORAGE_INTERFACE_VERSION016"
 
 // Global interface accessor
-inline ISteamRemoteStorage *SteamRemoteStorage();
-STEAM_DEFINE_USER_INTERFACE_ACCESSOR( ISteamRemoteStorage *, SteamRemoteStorage, STEAMREMOTESTORAGE_INTERFACE_VERSION );
+//inline ISteamRemoteStorage *SteamRemoteStorage();
+//STEAM_DEFINE_USER_INTERFACE_ACCESSOR( ISteamRemoteStorage *, SteamRemoteStorage, STEAMREMOTESTORAGE_INTERFACE_VERSION );
 
 // callbacks
 #if defined( VALVE_CALLBACK_PACK_SMALL )

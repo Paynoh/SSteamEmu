@@ -116,8 +116,8 @@ public:
 #define STEAMAPPS_INTERFACE_VERSION "STEAMAPPS_INTERFACE_VERSION008"
 
 // Global interface accessor
-inline ISteamApps *SteamApps();
-STEAM_DEFINE_USER_INTERFACE_ACCESSOR( ISteamApps *, SteamApps, STEAMAPPS_INTERFACE_VERSION );
+//inline ISteamApps *SteamApps();
+//STEAM_DEFINE_USER_INTERFACE_ACCESSOR( ISteamApps *, SteamApps, STEAMAPPS_INTERFACE_VERSION );
 
 // callbacks
 #if defined( VALVE_CALLBACK_PACK_SMALL )

@@ -465,8 +465,8 @@ public:
 #define STEAMFRIENDS_INTERFACE_VERSION "SteamFriends017"
 
 // Global interface accessor
-inline ISteamFriends *SteamFriends();
-STEAM_DEFINE_USER_INTERFACE_ACCESSOR( ISteamFriends *, SteamFriends, STEAMFRIENDS_INTERFACE_VERSION );
+//inline ISteamFriends *SteamFriends();
+//STEAM_DEFINE_USER_INTERFACE_ACCESSOR( ISteamFriends *, SteamFriends, STEAMFRIENDS_INTERFACE_VERSION );
 
 // callbacks
 #if defined( VALVE_CALLBACK_PACK_SMALL )

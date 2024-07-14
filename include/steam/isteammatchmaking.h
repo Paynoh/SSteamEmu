@@ -260,8 +260,8 @@ public:
 #define STEAMMATCHMAKING_INTERFACE_VERSION "SteamMatchMaking009"
 
 // Global interface accessor
-inline ISteamMatchmaking *SteamMatchmaking();
-STEAM_DEFINE_USER_INTERFACE_ACCESSOR( ISteamMatchmaking *, SteamMatchmaking, STEAMMATCHMAKING_INTERFACE_VERSION );
+//wooooinline ISteamMatchmaking *SteamMatchmaking();
+// wooooSTEAM_DEFINE_USER_INTERFACE_ACCESSOR( ISteamMatchmaking *, SteamMatchmaking, STEAMMATCHMAKING_INTERFACE_VERSION );
 
 //-----------------------------------------------------------------------------
 // Callback interfaces for server list functions (see ISteamMatchmakingServers below)

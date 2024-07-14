@@ -291,8 +291,8 @@ public:
 #define STEAMNETWORKING_INTERFACE_VERSION "SteamNetworking006"
 
 // Global interface accessor
-inline ISteamNetworking *SteamNetworking();
-STEAM_DEFINE_USER_INTERFACE_ACCESSOR( ISteamNetworking *, SteamNetworking, STEAMNETWORKING_INTERFACE_VERSION );
+//inline ISteamNetworking *SteamNetworking();
+//STEAM_DEFINE_USER_INTERFACE_ACCESSOR( ISteamNetworking *, SteamNetworking, STEAMNETWORKING_INTERFACE_VERSION );
 
 // Global accessor for the gameserver client
 inline ISteamNetworking *SteamGameServerNetworking();
