@@ -7,6 +7,38 @@
 #include "Steam_User.hpp"
 #include "Steam_Client.hpp"
 #include "Steam_Matchmaking.hpp"
+#include "Steam_RemoteStorage.hpp"
+
+S_API void SteamGameServer_Shutdown()
+{
+
+}
+
+S_API void* S_CALLTYPE SteamInternal_FindOrCreateGameServerInterface(HSteamUser hSteamUser, const char* pszVersion)
+{
+	return 0;
+}
+
+
+S_API HSteamPipe S_CALLTYPE SteamGameServer_GetHSteamPipe()
+{
+	return SteamAPI_GetHSteamPipe();
+}
+
+S_API HSteamUser S_CALLTYPE SteamGameServer_GetHSteamUser()
+{
+	return SteamAPI_GetHSteamUser();
+}
+
+S_API inline void S_CALLTYPE SteamGameServer_RunCallbacks()
+{
+
+}
+
+S_API inline void S_CALLTYPE SteamAPI_SetBreakpadAppID(uint32 unAppID)
+{
+
+}
 
 
 
@@ -130,6 +162,10 @@ void* Createinterface(const char* Version)
 	else if (strcmp(Version, "STEAMUSERSTATS_INTERFACE_VERSION012") == 0)
 	{
 		return new Steam_UserStats;
+	}
+	else if (strcmp(Version, "STEAMREMOTESTORAGE_INTERFACE_VERSION016") == 0)
+	{
+		return new Steam_RemoteStorage;
 	}
 	return nullptr;
 }
